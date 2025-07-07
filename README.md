@@ -6,15 +6,23 @@ Architecture for ESP32 payload designed for a rocket where the payload is chosen
 The payload integrates multiple sensors and communication modules to capture flight data and assist in recovery. The components are chosen for lightweight, low-power operation suitable for high-G, short-duration flights.
 
 ## Diagram
-ESP32
-├── GPS Module (UART)
-├── LoRa Transceiver (SPI)
-├── Barometric Pressure Sensor (I2C)
-├── IMU: Accelerometer + Gyroscope + Magnetometer (I2C)
-├── MicroSD Card Module (SPI or 2nd SPI bus)
-├── Buzzer / Piezo Alarm (GPIO)
-├── LED Beacon (GPIO with optional light sensor trigger)
-└── Battery Monitor (Optional, I2C)
+
+- **GPS Module**  
+  Interface: UART  
+- **LoRa Transceiver**  
+  Interface: SPI  
+- **Barometric Pressure Sensor**  
+  Interface: I2C  
+- **IMU (Accelerometer + Gyroscope + Magnetometer)**  
+  Interface: I2C  
+- **MicroSD Card Module**  
+  Interface: SPI (or secondary SPI bus)  
+- **Buzzer / Piezo Alarm**  
+  Interface: GPIO  
+- **LED Beacon**  
+  Interface: GPIO (optional light sensor trigger)  
+- **Battery Monitor (Optional)**  
+  Interface: I2C  
 
 ## Pin Configuration (Example)
 
