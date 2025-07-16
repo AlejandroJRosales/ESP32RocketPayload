@@ -144,6 +144,67 @@ Logging can be adjusted via a configuration file (optional feature) or baked int
 
 ---
 
-## License
+# Rocket Payload Thrust and Weight Estimation
 
-This project documentation is released under the MIT License.
+## Step 1: Estimate Payload + Rocket Weight
+
+Here’s a rough estimate of the weight of all major components:
+
+| **Component**                 | **Estimated Weight (g)** |
+|------------------------------|---------------------------|
+| ESP32 microcontroller        | 8                         |
+| GPS Module (e.g., BN-220)    | 10                        |
+| LoRa Transceiver             | 5                         |
+| Barometric Sensor (BMP280)   | 2                         |
+| IMU (e.g., MPU6050)          | 3                         |
+| MicroSD Module               | 2                         |
+| Buzzer + LED                 | 5                         |
+| OV2640 Camera (ESP32-CAM)    | 12                        |
+| LiPo Battery (1S ~500mAh)    | 15–25                     |
+| Wiring, headers, mount, shrink | 10–15                   |
+| **Total Electronics**        | **~72–87 g**              |
+| Airframe + Nose Cone + Fins  | ~45–55 g                  |
+| **Estimated Total**          | **~120–140 g**            |
+
+---
+
+## Step 2: C6-5 Engine Thrust
+
+- **Average thrust:** ~4.4 N  
+- **Peak thrust:** ~12.1 N  
+- **Burn time:** ~0.8 sec  
+- **Total impulse:** ~8.8 Ns
+
+---
+
+## Step 3: Minimum Thrust Required
+
+### To just lift off:
+
+The force required to lift off is:
+
+**F_required = m × g**  
+**F_required = 0.14 kg × 9.81 m/s² = 1.3734 N**  
+**F_required ≈ 1.37 N**
+
+---
+
+### To lift off safely (Thrust-to-Weight Ratio ≥ 5):
+
+**F_required = 5 × m × g**  
+**F_required = 5 × 0.14 kg × 9.81 m/s²**  
+**F_required ≈ 6.87 N**
+
+---
+
+## Conclusion
+
+The C6-5 engine’s **average thrust of 4.4 N** is **not enough** to reach the recommended thrust-to-weight ratio of 5, but it **exceeds the minimum thrust of 1.37 N**, so the rocket **will lift off**.
+
+However:
+
+- **Initial acceleration will be low**
+- **Flight may be unstable**
+- **Apogee may be lower**
+- **Performance may degrade** if drag is high or the launch angle is not ideal
+
